@@ -370,7 +370,7 @@ const CONFIG = {
   whatsappNumber: "918105560017",
   currency: "₹",
   orderCutoffHour: 22,          // 22 = 10 PM
-  backendUrl: "",               // optional: save orders to a backend (set later)
+  backendUrl: "https://script.google.com/macros/s/AKfycbxZjPzK1ukOo2CoZhmZIwVLAQJst20eItd2NiHtU58UzWxpyXIEmF1NYA5oeJ9TkK-T6g/exec",  // Google Sheet order log
   wings: ["A1","A2","A3","A4","C1","C2"],
   slots: ["9:00 – 10:00 AM","10:00 – 11:00 AM"],
   menu: [
@@ -489,7 +489,7 @@ function orderText(o){
 }
 async function saveOrder(o){
   if(!CONFIG.backendUrl) return;
-  try{ await fetch(CONFIG.backendUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(o)}); }
+  try{ await fetch(CONFIG.backendUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(o)}); }
   catch(e){ console.warn("save failed",e); }
 }
 
